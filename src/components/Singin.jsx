@@ -21,10 +21,11 @@ function Singin() {
                 console.log("successfly matched");
             }
         };
-        if (success === false) {
+        if (success != true) {
             setForm({ display: "none" });
             setImgSuccess({ display: "block" })
         } else {
+            setForm({ display: "none" });
             setImgFailed({ display: "block" })
         }
     };
