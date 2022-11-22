@@ -10,7 +10,8 @@ function Singin() {
     const [checkEmail, setCheckEmail] = useState("")
     const [success, setSuccess] = useState(false)
     const [form, setForm] = useState({ display: "block" });
-    const [img, setImg] = useState({ display: "none" })
+    const [imgSucces, setImgSuccess] = useState({ display: "none" });
+    const [imgFailed, setImgFailed] = useState({ display: "none" });
     function login(e) {
         e.preventDefault();
         setCallApi(true)
@@ -20,10 +21,12 @@ function Singin() {
                 console.log("successfly matched");
             }
         };
-if(success === true){
-    setForm({display:"none"}) ;
-    setImg({display:"block"})
-}
+        if (success === false) {
+            setForm({ display: "none" });
+            setImgSuccess({ display: "block" })
+        } else {
+            setImgFailed({ display: "block" })
+        }
     };
 
 
@@ -60,13 +63,17 @@ if(success === true){
     return (
 
         <>
-            
-            <div className="successful text-center my-5 py-5" style={img }>
-<img src="images/c34428b1-8e49-4b32-882d-ea2f3d95e9c0.jpg" alt="" />
-<h3 className='text-center'>singin has been successfly</h3>
+
+            <div className="successful text-center my-5 py-5" style={imgSucces}>
+                <img src="images/c34428b1-8e49-4b32-882d-ea2f3d95e9c0.jpg" alt="" />
+                <h3 className='text-center'>singin has been successfly</h3>
+            </div>
+            <div className="failed text-center my-5 py-5" style={imgFailed}>
+                <img src="images/error-code-1.webp" alt="" />
+
             </div>
             <main className="form-signin w-100 m-auto " style={form} >
-                <form className='my-5 py-5'  onSubmit={(e) => { login(e) }}>
+                <form className='my-5 py-5' onSubmit={(e) => { login(e) }}>
 
                     <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
                     <div className="form-floating">
