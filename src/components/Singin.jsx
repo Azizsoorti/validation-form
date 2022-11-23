@@ -41,7 +41,7 @@ function Singin() {
     return (
         <>
             <div className="successful text-center my-5 py-5" style={imgSucces}>
-                <img src="images/c34428b1-8e49-4b32-882d-ea2f3d95e9c0.jpg" alt="" onClick={() => {
+                <img src="images/login-success.jpg" alt="" onClick={() => {
                     setForm({ display: "block" });
                     setImgSuccess({ display: "none" })
                     setEmail("");
@@ -51,7 +51,7 @@ function Singin() {
             </div>
 
             <div className="failed text-center my-5 py-5" style={imgFailed}>
-                <img src="images/error-code-1.webp" alt="" onClick={() => {
+                <img src="images/login-failed.png" alt="" onClick={() => {
                     setForm({ display: "block" });
                     setImgFailed({ display: "none" });
                     setEmail("");
