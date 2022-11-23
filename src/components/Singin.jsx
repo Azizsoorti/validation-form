@@ -47,7 +47,7 @@ function Singin() {
                     setEmail("");
                     setPassword("");
                 }} />
-                <h3 className='text-center'>singin has been successfly</h3>
+                <h3 className='text-center'>you have been successflly signed</h3>
             </div>
 
             <div className="failed text-center my-5 py-5" style={imgFailed}>
