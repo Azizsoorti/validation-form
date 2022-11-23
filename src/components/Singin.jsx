@@ -7,72 +7,58 @@ function Singin() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState('')
     const [callApi, setCallApi] = useState(false);
-    const [checkEmail, setCheckEmail] = useState("")
-    const [success, setSuccess] = useState(false)
+
     const [form, setForm] = useState({ display: "block" });
     const [imgSucces, setImgSuccess] = useState({ display: "none" });
     const [imgFailed, setImgFailed] = useState({ display: "none" });
+
     function login(e) {
         e.preventDefault();
         setCallApi(true)
-        for (let i = 0; i < checkEmail.length; i++) {
-            if (checkEmail[i] === email) {
-                setSuccess(true)
-                console.log("successfly matched");
-            }
-        };
-        if (success != true) {
-            setForm({ display: "none" });
-            setImgSuccess({ display: "block" })
-        } else {
-            setForm({ display: "none" });
-            setImgFailed({ display: "block" })
-        }
     };
-
-
-
-
 
     useEffect(() => {
         if (callApi === true) {
             const url = 'https://jsonplaceholder.typicode.com/users'
             axios.get(url).then((res) => {
                 if (res.data) {
-
                     let allItems = res.data;
-                    let allEmails = allItems.map((item) => {
-                        return item.email
-                    })
-                    setCheckEmail(allEmails)
-
-                }
+                    let allEmails = allItems.map((item) => { return item.email })
+                    let find = allEmails.includes(email);
+                    if (find === true) {
+                        setForm({ display: "none" });
+                        setImgSuccess({ display: "block" })
+                    } else {
+                        setForm({ display: "none" });
+                        setImgFailed({ display: "block" })
+                    }
+                };
             })
                 .catch((err) => { console.log(err); })
         }
-
     }, [callApi])
 
-
-
-
-
-
-
-
-
     return (
-
         <>
-
             <div className="successful text-center my-5 py-5" style={imgSucces}>
-                <img src="images/c34428b1-8e49-4b32-882d-ea2f3d95e9c0.jpg" alt="" />
+                <img src="images/c34428b1-8e49-4b32-882d-ea2f3d95e9c0.jpg" alt="" onClick={() => {
+                    setForm({ display: "block" });
+                    setImgSuccess({ display: "none" })
+                    setEmail("");
+                    setPassword("");
+                }} />
                 <h3 className='text-center'>singin has been successfly</h3>
             </div>
-            <div className="failed text-center my-5 py-5" style={imgFailed}>
-                <img src="images/error-code-1.webp" alt="" />
 
+            <div className="failed text-center my-5 py-5" style={imgFailed}>
+                <img src="images/error-code-1.webp" alt="" onClick={() => {
+                    setForm({ display: "block" });
+                    setImgFailed({ display: "none" });
+                    setEmail("");
+                    setPassword("");
+                }} />
             </div>
+
             <main className="form-signin w-100 m-auto " style={form} >
                 <form className='my-5 py-5' onSubmit={(e) => { login(e) }}>
 
